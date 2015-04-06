@@ -1,0 +1,74 @@
+<component name="libraryTable">
+  <library name="lib_jar_files">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../lib_jar_files" />
+      <root url="jar://$USER_HOME$/Downloads/opencsv-2.2.jar.zip!/" />
+      <root url="jar://$USER_HOME$/Downloads/opencsv-2.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/commons-math3-3.2.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-appengine/javadoc" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-examples/javadoc" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-media-support/javadoc" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-spdy-support/javadoc" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-stream/javadoc" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-appengine/javadoc" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-examples/javadoc" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-media-support/javadoc" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-spdy-support/javadoc" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-stream/javadoc" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/apache-storm-0.9.2-incubating (2)/examples/storm-starter/src/jvm" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/apache-storm-0.9.2-incubating (2)/examples/storm-starter/test/jvm" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/apache-storm-0.9.2-incubating/examples/storm-starter/src/jvm" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/apache-storm-0.9.2-incubating/examples/storm-starter/test/jvm" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/apache-storm-0.9.2-incubating/external/storm-kafka/src/jvm" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/apache-storm-0.9.2-incubating/external/storm-kafka/src/test" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/apache-storm-0.9.2-incubating/storm-buildtools/maven-shade-clojure-transformer/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/apache-storm-0.9.2-incubating/storm-core/src/jvm" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/apache-storm-0.9.2-incubating/storm-core/test/jvm" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-appengine/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-appengine/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-async/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-async/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-core/src/internal-async/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-core/src/internal-http/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-core/src/internal-json/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-core/src/internal-logging/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-core/src/internal-util/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-core/src/jmx/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-core/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-core/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-examples/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-media-support/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-media-support/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-spdy-support/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-spdy-support/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-stream/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-4.0.2/twitter4j-stream/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-appengine/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-appengine/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-async/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-async/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-core/src/internal-async/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-core/src/internal-http/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-core/src/internal-json/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-core/src/internal-logging/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-core/src/internal-util/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-core/src/jmx/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-core/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-core/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-examples/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-media-support/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-media-support/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-spdy-support/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-spdy-support/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-stream/src/main/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files/twitter4j/twitter4j-stream/src/test/java" />
+      <root url="file://$PROJECT_DIR$/../lib_jar_files" />
+    </SOURCES>
+    <jarDirectory url="file://$PROJECT_DIR$/../lib_jar_files" recursive="false" />
+    <jarDirectory url="file://$PROJECT_DIR$/../lib_jar_files" recursive="false" type="SOURCES" />
+  </library>
+</component>
