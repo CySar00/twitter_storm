@@ -38,6 +38,7 @@ public class ThreeDRandomNumberSpout extends BaseRichSpout {
         for(int i=0;i<TUPLES;i++){
             for(int j=0;j<CLUSTERS;j++){
                 collector.emit(new Values(membershipArray[i][j]));
+              //  System.out.println(membershipArray[i][j]);
 
             }
         }

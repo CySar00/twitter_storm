@@ -26,7 +26,7 @@ public class CreateDataSetFromAKCluster extends BaseRichBolt {
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("FUCKING_AUTHOR","FUCKING_VECTOR"));
+        declarer.declare(new Fields("AUTHOR","VECTOR"));
     }
 
     @Override
@@ -45,19 +45,19 @@ public class CreateDataSetFromAKCluster extends BaseRichBolt {
         String dataLine1=dataLine.replace(", [","[");
        // String []fuckingDataInfo=dataLine1.split("\\[");
 
-        String theFuckingAuthor= StringUtils.substringBefore(dataLine1,"[");
-        String theFuckingAuthorsFuckingFeatures=StringUtils.substringBetween(dataLine1, "[", "]");
+        String theAuthor= StringUtils.substringBefore(dataLine1,"[");
+        String theAuthorsFeatures=StringUtils.substringBetween(dataLine1, "[", "]");
 
-        final List<Double>fuckingListOfFeatures=new ArrayList<Double>();
+        final List<Double>listOfFeatures=new ArrayList<Double>();
         //System.out.println(theFuckingAuthor+" "+theFuckingAuthorsFuckingFeatures);
-        String[]aFuckingFeature=theFuckingAuthorsFuckingFeatures.split(",");
+        String[]aFuckingFeature=theAuthorsFeatures.split(",");
         for(int i=0;i<aFuckingFeature.length;i++){
-            fuckingListOfFeatures.add(Double.parseDouble(aFuckingFeature[i]));
+            listOfFeatures.add(Double.parseDouble(aFuckingFeature[i]));
         }
 
-        if(!fuckingMap.containsKey(theFuckingAuthor)){
-            collector.emit(input,new Values(theFuckingAuthor,fuckingListOfFeatures));
-            fuckingMap.put(theFuckingAuthor,fuckingListOfFeatures);
+        if(!fuckingMap.containsKey(theAuthor)){
+            collector.emit(input,new Values(theAuthor,listOfFeatures));
+            fuckingMap.put(theAuthor,listOfFeatures);
         }
         collector.ack(input);
 

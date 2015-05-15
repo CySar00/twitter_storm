@@ -32,18 +32,42 @@ public class EmitDataIntoClosestCluster {
                     if(index>1){
                         index=0;
                     }
-
                     result=centroidsVector;
                 }
-
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
         collector.emit(new Values(index,author,vector));
-
-
     }
 
-  
+  public static void emitDataPointsIntoClosestFuzzyCluster(OutputCollector collector,String[]centroids,String author,double[]vectorOfFeatures,double[]membershipVector,double fuzzyParameter){
+      double min=Double.MAX_VALUE;
+      double diff;
+      int index=0;
+
+      double[]result=null;
+      double[] centroidsVector;
+
+      for(int i=0;i<centroids.length;i++){
+          try{
+              centroidsVector=SerializeAndDeserializeJavaObjects.convertStringToDoubleArray(centroids[i]);
+              diff=Distance.computeFuzzyDistance(centroidsVector,vectorOfFeatures,membershipVector,fuzzyParameter);
+
+              if(diff<min){
+                  min=diff;
+                  index=i+1;
+                  if(index>2){
+                      index=0;
+                  }
+                  result=centroidsVector;
+              }
+
+          }catch (Exception ex){
+              ex.printStackTrace();
+          }
+      }
+      System.out.println(index+" "+author+" "+vectorOfFeatures);
+      collector.emit(new Values(index,author,vectorOfFeatures));
+  }
 }

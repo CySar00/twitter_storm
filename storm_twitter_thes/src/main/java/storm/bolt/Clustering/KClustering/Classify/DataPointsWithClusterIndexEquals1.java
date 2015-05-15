@@ -19,11 +19,11 @@ public class DataPointsWithClusterIndexEquals1 extends BaseBasicBolt {
 
     Map<String, double[]> authorAndVectorMap = new HashMap<String, double[]>();
     Map<String, List<Double>> authorAndListMap = new HashMap<String, List<Double>>();
-    Set<String>theFuckingAuthors=new HashSet<String>();
+    Set<String>theAuthors=new HashSet<String>();
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("CLUSTER_INDEX","FUCKING_AUTHOR", "FUCKING_LIST"));
+        declarer.declare(new Fields("CLUSTER_INDEX","AUTHOR", "LIST"));
 
     }
 
@@ -31,32 +31,32 @@ public class DataPointsWithClusterIndexEquals1 extends BaseBasicBolt {
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
         int clusterIndex = (int) input.getInteger(0);
-        String aFuckingAuthor = input.getString(1);
+        String author = input.getString(1);
         double[] vector = (double[]) input.getValue(2);
 
 
 
-        double[] vector1 = authorAndVectorMap.get(aFuckingAuthor);
+        double[] vector1 = authorAndVectorMap.get(author);
         if (vector1 == null)
             vector1 = new double[vector.length];
         vector1 = vector;
 
-        List<Double> list = authorAndListMap.get(aFuckingAuthor);
+        List<Double> list = authorAndListMap.get(author);
         if (list == null) {
             list = new ArrayList<Double>();
         }
 
         if (clusterIndex == 1) {
-            if(!theFuckingAuthors.contains(aFuckingAuthor)) {
+            if(!theAuthors.contains(author)) {
 
 
                 for (int i = 0; i < vector.length; i++) {
                     list.add((vector[i]));
                 }
-                System.out.println(aFuckingAuthor + " " + list);
+                System.out.println(author + " " + list);
 
-                collector.emit(new Values(1,aFuckingAuthor,list));
-                theFuckingAuthors.add(aFuckingAuthor);
+                collector.emit(new Values(1,author,list));
+                theAuthors.add(author);
             }
 
         }

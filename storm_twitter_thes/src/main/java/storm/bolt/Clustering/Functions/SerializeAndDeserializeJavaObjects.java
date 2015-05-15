@@ -29,6 +29,22 @@ public class SerializeAndDeserializeJavaObjects {
         return stringBuilder.toString();
     }
 
+    public static String convertDoubleListToString(List<Double>list){
+        StringBuilder stringBuilder=new StringBuilder();
+
+        if(list==null || list.isEmpty()){
+            return null;
+        }
+
+        if(list.size()>0){
+            stringBuilder.append(String.valueOf(list.get(0)));
+            for(int i=1;i<list.size();i++){
+                stringBuilder.append(NEXT_ELEMENT).append(String.valueOf(list.get(i)));
+            }
+        }
+        return stringBuilder.toString();
+    }
+
 
     public static double[] convertStringToDoubleArray(String string) throws IOException{
         StreamTokenizer streamTokenizer=new StreamTokenizer(new StringReader(string));

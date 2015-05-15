@@ -19,7 +19,7 @@ public class CreateTheInitialKCentroids extends BaseBasicBolt {
     public static final int TUPLES=10;
     public static final int CLUSTERS=2;
 
-    Map<Integer,double[]>map=new HashMap<Integer, double[]>();
+    Map<Integer,List<Double>>map=new HashMap<Integer,List<Double>>();
     Map<Integer,double[]>centroids=new HashMap<Integer, double[]>();
 
     String serializedVectors="";
@@ -47,24 +47,42 @@ public class CreateTheInitialKCentroids extends BaseBasicBolt {
     private void CreateInitialCentroids(){
         int index=0;
         Iterator iterator=buffer.iterator();
-        Set<String> theFuckingAuthors=new HashSet<String>();
+        Set<String> theAuthors=new HashSet<String>();
+        Set<double[]>uniqueVectors=new HashSet<double[]>();
+        Set<String>uniqueAuthors=new HashSet<String>();
+
+        Set<List<Double>>uniqueSetOfListsOfFeatures=new HashSet<List<Double>>();
+        List<List<Double>>listOfFeatures=new ArrayList<List<Double>>();
+
         while (iterator.hasNext()){
             Tuple input=(Tuple)iterator.next();
 
             String author=input.getString(0);
             double[]vector=(double[])input.getValue(1);
 
-            if(!theFuckingAuthors.contains(author)) {
+            List<Double>aListOfFeatures=new ArrayList<Double>();
 
-                if (!map.containsKey(index) && !(map.containsValue(vector))) {
-                    map.put(index, vector);
+            if(vector!=null){
+                for(int i=0;i<vector.length;i++){
+                    aListOfFeatures.add(vector[i]);
                 }
+            }
 
-                if (index == CLUSTERS) {
-                    break;
-                }
+            if(!uniqueSetOfListsOfFeatures.contains(listOfFeatures)){
+                listOfFeatures.add(aListOfFeatures);
+                uniqueSetOfListsOfFeatures.add(aListOfFeatures);
+            }
+
+        }
+
+        if(listOfFeatures.size()==CLUSTERS) {
+            //   System.out.println(fuckingListOfFuckingFeatures);
+            Iterator iterator1=listOfFeatures.iterator();
+            while (iterator1.hasNext()) {
+                List<Double> aList = (List<Double>) iterator1.next();
+
+                map.put(index, aList);
                 index += 1;
-                theFuckingAuthors.add(author);
             }
         }
 
@@ -73,12 +91,12 @@ public class CreateTheInitialKCentroids extends BaseBasicBolt {
         if(!map.isEmpty() && map.entrySet().size()==CLUSTERS && index==CLUSTERS){
             System.out.println(map);
 
-            for(Map.Entry<Integer,double[]>entry:map.entrySet()){
+            for(Map.Entry<Integer,List<Double>>entry:map.entrySet()){
                 int centroidIndex=(int)entry.getKey();
-                double[]centroidVector=entry.getValue();
+                List<Double>list1=entry.getValue();
 
                 String[]strings=new String[CLUSTERS];
-                serializedVectors= SerializeAndDeserializeJavaObjects.convertDoubleVectorToString(centroidVector);
+                serializedVectors= SerializeAndDeserializeJavaObjects.convertDoubleListToString(list1);
                 if(serializedVectors!=null) {
                     KClustersDatabase.setSerializedMap(centroidIndex, serializedVectors);
                     System.out.println(centroidIndex+" "+serializedVectors);

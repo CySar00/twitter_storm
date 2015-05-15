@@ -27,7 +27,7 @@ public class EmitAllDataPointsFromAKClusterIntoMap extends BaseBasicBolt{
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("FUCKING_MAP"));
+        declarer.declare(new Fields("MAP"));
     }
 
     @Override
@@ -57,11 +57,11 @@ public class EmitAllDataPointsFromAKClusterIntoMap extends BaseBasicBolt{
             Tuple input = (Tuple) iterator.next();
 
             if (input != null) {
-                String aFuckingAuthor = input.getString(0);
-                List<Double>fuckingList =(List<Double>)input.getValue(1);
+                String author = input.getString(0);
+                List<Double>list =(List<Double>)input.getValue(1);
 
-                if(!map.containsKey(aFuckingAuthor)){
-                    map.put(aFuckingAuthor,fuckingList);
+                if(!map.containsKey(author)){
+                    map.put(author,list);
                 }
 
                 index += 1;

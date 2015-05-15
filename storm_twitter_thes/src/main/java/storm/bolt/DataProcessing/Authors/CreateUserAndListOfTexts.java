@@ -52,7 +52,7 @@ public class CreateUserAndListOfTexts extends BaseRichBolt {
 
         if (anAuthor != null && user != null) {
             if (user.equals(anAuthor)) {
-                if (!authors.contains(user)) {
+
 
                     String author = user;
 
@@ -66,7 +66,9 @@ public class CreateUserAndListOfTexts extends BaseRichBolt {
                         uniqueTexts.add(text);
                     }
 
-                    if (!userAndTexts.containsKey(author)) {
+                   // if (!userAndTexts.containsKey(author)) {
+                    if(!authors.contains(author)){
+                        if(!userAndTexts.containsKey(author)){
                         System.out.println(author + " " + uniqueTexts);
 
                         collector.emit(new Values(author, uniqueTexts));

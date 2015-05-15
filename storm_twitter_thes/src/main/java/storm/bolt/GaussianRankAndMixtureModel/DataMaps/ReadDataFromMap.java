@@ -18,12 +18,12 @@ import java.util.*;
 public class ReadDataFromMap extends BaseRichBolt {
     OutputCollector collector;
 
-    Map<String,double[]>fuckingMap=new HashMap<String, double[]>();
+    Map<String,double[]>map=new HashMap<String, double[]>();
     Map<String,String>map1=new HashMap<String, String>();
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-        declarer.declare(new Fields("FUCKING_MAP"));
+        declarer.declare(new Fields("MAP"));
 
     }
 
@@ -42,10 +42,10 @@ public class ReadDataFromMap extends BaseRichBolt {
             set.add(lastLineFromFile);
 
             //System.out.println(lastLineFromFile);
-            int firstFuckingIndexOfMap = lastLineFromFile.indexOf("[{");
-            int lastFuckingIndexOfMap = lastLineFromFile.indexOf("}]");
+            int firstIndexOfMap = lastLineFromFile.indexOf("[{");
+            int lastIndexOfMap = lastLineFromFile.indexOf("}]");
 
-            String mapLine = lastLineFromFile.substring(firstFuckingIndexOfMap + 2, lastFuckingIndexOfMap);
+            String mapLine = lastLineFromFile.substring(firstIndexOfMap + 2, lastIndexOfMap);
 
             String mapLine1=mapLine.replace("],","]}");
            // System.out.println(mapLine1);
@@ -54,11 +54,11 @@ public class ReadDataFromMap extends BaseRichBolt {
             for(int i=0;i<userAndFeatures.length;i++){
              //   System.out.println(userAndFeatures[i]);
 
-                String fuckingAuthor= StringUtils.substringBefore(userAndFeatures[i],"=");
+                String author= StringUtils.substringBefore(userAndFeatures[i],"=");
                 String fuckingFeatures=StringUtils.substringBetween(userAndFeatures[i],"[","]");
 
-                if(!map1.containsKey(fuckingAuthor)){
-                    map1.put(fuckingAuthor,fuckingFeatures);
+                if(!map1.containsKey(author)){
+                    map1.put(author,fuckingFeatures);
                 }
             }
         }
@@ -75,12 +75,11 @@ public class ReadDataFromMap extends BaseRichBolt {
             }
             double[]aVector=Doubles.toArray(aList);
 
-            if(!fuckingMap.containsKey(key)){
-                fuckingMap.put(key,aVector);
+            if(!map.containsKey(key)){
+                map.put(key,aVector);
             }
 
         }
-        collector.emit(new Values(fuckingMap));
-     //   System.out.println(fuckingMap);
+        collector.emit(new Values(map));
     }
 }

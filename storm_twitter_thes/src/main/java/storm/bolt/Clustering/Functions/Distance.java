@@ -24,4 +24,13 @@ public class Distance{
         }
         return sum;
     }
+
+    public static double computeFuzzyDistance(double[]vector1,double[]vector2,double[]vector3,double fuzzy){
+        double sum=0;
+
+        for(int i=0;i<vector1.length;i++){
+            sum+=(vector1[i]-vector2[i])*(vector1[i]-vector2[i])*Math.pow(vector3[i],fuzzy);
+        }
+        return sum;
+    }
 }

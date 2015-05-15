@@ -8,87 +8,97 @@ import org.apache.commons.collections.Buffer;
 import org.apache.commons.collections.buffer.CircularFifoBuffer;
 import storm.bolt.Clustering.Functions.SerializeAndDeserializeJavaObjects;
 import storm.bolt.Databases.Cassandra.FuzzyClustersDatabase;
-import storm.bolt.Databases.Cassandra.KClustersDatabase;
 
 import java.util.*;
 
 /**
- * Created by christina on 4/2/15.
+ * Created by christina on 4/21/15.
  */
 public class CreateTheInitialFuzzyCentroids extends BaseBasicBolt {
     public static final int TUPLES=10;
     public static final int CLUSTERS=3;
 
-    Map<Integer,double[]> map=new HashMap<Integer, double[]>();
-    Map<Integer,double[]>centroids=new HashMap<Integer, double[]>();
-
-    String serializedVectors="";
     Buffer buffer=new CircularFifoBuffer(TUPLES);
 
+    Map<Integer,List<Double>>map=new HashMap<Integer, List<Double>>();
+    Map<Integer,List<Double>>centroids=new HashMap<Integer, List<Double>>();
 
-
+    String serialized="";
 
     @Override
     public void declareOutputFields(OutputFieldsDeclarer declarer) {
-
     }
 
     @Override
     public void execute(Tuple input, BasicOutputCollector collector) {
-        HashSet<Tuple> tuples=new HashSet<Tuple>();
-        if(!tuples.contains(input)){
+        Set<Tuple>set=new HashSet<Tuple>();
+        if(!set.contains(input)) {
             buffer.add(input);
-            tuples.add(input);
+            set.add(input);
         }
+        createTheFuzzyCentroids();
 
-        CreateInitialCentroids();
     }
 
-    private void CreateInitialCentroids(){
+    private void createTheFuzzyCentroids(){
         int index=0;
+
         Iterator iterator=buffer.iterator();
-        Set<String> theFuckingAuthors=new HashSet<String>();
+        Set<double[]>uniqueVectors=new HashSet<double[]>();
+        Set<String>uniqueAuthors=new HashSet<String>();
+
+        Set<List<Double>>uniqueSetOfListsOfFeatures=new HashSet<List<Double>>();
+        List<List<Double>>listsOfFeatures=new ArrayList<List<Double>>();
+
         while (iterator.hasNext()){
             Tuple input=(Tuple)iterator.next();
 
             String author=input.getString(0);
-            double[]vector=(double[])input.getValue(1);
+            double[]theAuthorsFeatures=(double[])input.getValue(1);
 
-            if(!theFuckingAuthors.contains(author)) {
+            List<Double>listOfFeatures=new ArrayList<Double>();
 
-                if (!map.containsKey(index) &&!(map.containsValue(vector))) {
-                    map.put(index, vector);
+            if(theAuthorsFeatures!=null){
+                for(int i=0;i<theAuthorsFeatures.length;i++){
+                    listOfFeatures.add(theAuthorsFeatures[i]);
                 }
+            }
 
-                if (index == CLUSTERS) {
-                    break;
-                }
+            if(!uniqueSetOfListsOfFeatures.contains(listOfFeatures)){
+                listsOfFeatures.add(listOfFeatures);
+                uniqueSetOfListsOfFeatures.add(listOfFeatures);
+            }
+
+        }
+
+        if(listsOfFeatures.size()==CLUSTERS) {
+         //   System.out.println(fuckingListOfFuckingFeatures);
+            Iterator iterator1=listsOfFeatures.iterator();
+            while (iterator1.hasNext()) {
+                List<Double> aList = (List<Double>) iterator1.next();
+
+                map.put(index, aList);
                 index += 1;
-                theFuckingAuthors.add(author);
             }
         }
 
-        List<Double>list=new ArrayList<Double>();
+        if(!map.isEmpty() && map.entrySet().size()==CLUSTERS){
+           // System.out.println(map);
 
-        if(!map.isEmpty() && map.entrySet().size()==CLUSTERS && index==CLUSTERS){
-            System.out.println(map);
-
-            for(Map.Entry<Integer,double[]>entry:map.entrySet()){
-                int centroidIndex=(int)entry.getKey();
-                double[]centroidVector=entry.getValue();
+            for(Map.Entry<Integer,List<Double>>entry:map.entrySet()){
+                int clusterIndex=(int)entry.getKey();
+                List<Double>listOfFeatures=(List<Double>)entry.getValue();
 
                 String[]strings=new String[CLUSTERS];
-                serializedVectors= SerializeAndDeserializeJavaObjects.convertDoubleVectorToString(centroidVector);
-                if(serializedVectors!=null) {
-                    FuzzyClustersDatabase.setSerializedMap(centroidIndex, serializedVectors);
-                    System.out.println(centroidIndex+" "+serializedVectors);
-                    strings[centroidIndex]=serializedVectors;
-
-
+                serialized=SerializeAndDeserializeJavaObjects.convertDoubleListToString(listOfFeatures);
+                //System.out.println(serialized);
+                if(serialized!=null){
+                    FuzzyClustersDatabase.setSerializedMap(clusterIndex,serialized);
+                    strings[clusterIndex]=serialized;
                 }
 
-
             }
+
         }
     }
 }

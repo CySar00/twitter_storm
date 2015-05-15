@@ -24,7 +24,7 @@ public class EmitDataPoints extends BaseRichBolt {
 
     String[]serialized;
 
-    Set<String>theFuckingAuthors=new HashSet<String>();
+    Set<String>theAuthors=new HashSet<String>();
 
 
     @Override
@@ -40,14 +40,14 @@ public class EmitDataPoints extends BaseRichBolt {
 
     @Override
     public void execute(Tuple input) {
-        String fuckingAuthor=input.getString(0);
+        String author=input.getString(0);
         double[]vector=(double[])input.getValue(1);
 
         serialized=KClustersDatabase.getSerializedClusterMap();
 
-        if(!theFuckingAuthors.contains(fuckingAuthor)) {
-            EmitDataIntoClosestCluster.emitDataPointsIntoClosestKCluster(collector, serialized, fuckingAuthor, vector);
-            theFuckingAuthors.add(fuckingAuthor);
+        if(!theAuthors.contains(author)) {
+            EmitDataIntoClosestCluster.emitDataPointsIntoClosestKCluster(collector, serialized, author, vector);
+            theAuthors.add(author);
         }
 
     }

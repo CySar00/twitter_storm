@@ -42,12 +42,12 @@ public class CreateMapsFromMixtureModelMapsFile extends BaseRichBolt {
 
     @Override
     public void execute(Tuple input) {
-        String fuckingLastLineFromFuckingLine=input.getString(0);
+        String lastLineFromLine=input.getString(0);
 
-        int firstIndexOfMaps=fuckingLastLineFromFuckingLine.indexOf("[{");
-        int lastIndexOfMap=fuckingLastLineFromFuckingLine.indexOf("]}]");
+        int firstIndexOfMaps=lastLineFromLine.indexOf("[{");
+        int lastIndexOfMap=lastLineFromLine.indexOf("]}]");
 
-        String fuckingMapsString=fuckingLastLineFromFuckingLine.substring(firstIndexOfMaps+2,lastIndexOfMap+1);
+        String fuckingMapsString=lastLineFromLine.substring(firstIndexOfMaps+2,lastIndexOfMap+1);
         String[]mapsString=fuckingMapsString.split("\\}, \\{");
 
         String featuresMapString=mapsString[0];

@@ -63,7 +63,7 @@ public class CreatingTheDataSet extends BaseRichBolt {
 
         if(!map.containsKey(author)) {
             map.put(author,valuesAsDoubleVector);
-         //   System.out.println(author+" "+valuesAsDoubleVector);
+           System.out.println(author+" "+valuesAsDoubleVector);
             collector.emit(input, new Values(author, valuesAsDoubleVector));
         }
        // collector.ack(input);

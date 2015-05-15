@@ -43,7 +43,7 @@ public class FuzzyClustersDatabase {
         ConfigurableConsistencyLevel configurableConsistencyLevel = new ConfigurableConsistencyLevel();
         Map<String, HConsistencyLevel> consistencyLevelMap = new HashMap<String, HConsistencyLevel>();
 
-        consistencyLevelMap.put("fuzzy_user", HConsistencyLevel.ONE);
+        consistencyLevelMap.put("user", HConsistencyLevel.ONE);
         configurableConsistencyLevel.setReadCfConsistencyLevels(consistencyLevelMap);
         configurableConsistencyLevel.setWriteCfConsistencyLevels(consistencyLevelMap);
 
@@ -52,7 +52,7 @@ public class FuzzyClustersDatabase {
         try {
             me.prettyprint.hector.api.query.ColumnQuery<String, String, String> columnQuery = HFactory.createStringColumnQuery(keyspace);
             for (int i = 0; i < clusters.length; i++) {
-                columnQuery.setColumnFamily("fuzzy_user").setKey("fuzzy_cluster").setName(clusters[i]);
+                columnQuery.setColumnFamily("clusters").setKey("cluster").setName(clusters[i]);
                 QueryResult<HColumn<String, String>> result = columnQuery.execute();
 
                 if (result == null) {
@@ -78,7 +78,7 @@ public class FuzzyClustersDatabase {
         ConfigurableConsistencyLevel configurableConsistencyLevel = new ConfigurableConsistencyLevel();
         Map<String, HConsistencyLevel> consistencyLevelMap = new HashMap<String, HConsistencyLevel>();
 
-        consistencyLevelMap.put("fuzzy_user", HConsistencyLevel.ONE);
+        consistencyLevelMap.put("user", HConsistencyLevel.ONE);
         configurableConsistencyLevel.setReadCfConsistencyLevels(consistencyLevelMap);
         configurableConsistencyLevel.setWriteCfConsistencyLevels(consistencyLevelMap);
 
@@ -94,7 +94,7 @@ public class FuzzyClustersDatabase {
 
         Mutator<String> mutator = HFactory.createMutator(keyspace, me.prettyprint.cassandra.serializers.StringSerializer.get());
         try {
-            mutator.insert("fuzzy_cluster", "fuzzy_user", HFactory.createStringColumn("cluster-" + index, serializedVector));
+            mutator.insert("cluster", "clusters", HFactory.createStringColumn("cluster-" + index, serializedVector));
         } catch (HectorException e) {
             e.printStackTrace();
         }
