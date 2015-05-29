@@ -29,13 +29,13 @@ public class KMeansClusteringTopology {
         topologyBuilder.setBolt("CREATE_THE_INITIAL_K_CENTROIDS",new CreateTheInitialKCentroids()).globalGrouping("CREATING_THE_DATA_SET");
 
         topologyBuilder.setBolt("EMIT_DATA_POINTS",new EmitDataPoints()).globalGrouping("CREATING_THE_DATA_SET");
-        topologyBuilder.setBolt("K_CLUSTERS",new KClusters()).fieldsGrouping("EMIT_DATA_POINTS",new Fields("INDEX"));
+        topologyBuilder.setBolt("K_CLUSTERS",new KClusters(),16).fieldsGrouping("EMIT_DATA_POINTS",new Fields("INDEX"));
 
-        topologyBuilder.setBolt("FIND_CLUSTER_DATA_THAT_HAVE_INDEX_EQUALS_0",new DataPointsWithClusterIndexEquals0()).fieldsGrouping("K_CLUSTERS",new Fields("INDEX","USERNAME"));
+        topologyBuilder.setBolt("FIND_CLUSTER_DATA_THAT_HAVE_INDEX_EQUALS_0",new DataPointsWithClusterIndexEquals0(),16).fieldsGrouping("K_CLUSTERS",new Fields("INDEX","USERNAME"));
         topologyBuilder.setBolt("WRITE_DATA_FROM_CLUSTER_EQUALS_0_TO_FILE",new FileWriterBolt("DataFromKCluster0.txt")).shuffleGrouping("FIND_CLUSTER_DATA_THAT_HAVE_INDEX_EQUALS_0");
 
 
-        topologyBuilder.setBolt("FIND_CLUSTER_DATA_THAT_HAVE_INDEX_EQUALS_1",new DataPointsWithClusterIndexEquals1()).fieldsGrouping("K_CLUSTERS",new Fields("INDEX","USERNAME"));
+        topologyBuilder.setBolt("FIND_CLUSTER_DATA_THAT_HAVE_INDEX_EQUALS_1",new DataPointsWithClusterIndexEquals1(),16).fieldsGrouping("K_CLUSTERS",new Fields("INDEX","USERNAME"));
         topologyBuilder.setBolt("WRITE_DATA_FROM_CLUSTER_EQUALS_1_TO_FILE",new FileWriterBolt("DataFromKCluster1.txt")).shuffleGrouping("FIND_CLUSTER_DATA_THAT_HAVE_INDEX_EQUALS_1");
 
 

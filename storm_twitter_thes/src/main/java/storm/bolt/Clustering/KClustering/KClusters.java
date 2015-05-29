@@ -55,7 +55,9 @@ public class KClusters extends BaseRichBolt {
             centroidsMap.put(clusterIndex,resultVector);
             updateCentroids(clusterIndex,resultVector);
 
-            collector.emit(new Values(clusterIndex,author,vector));
+            if(author!=null) {
+                collector.emit(new Values(clusterIndex, author, vector));
+            }
         }
 
 //        System.out.println(clusterIndex+" "+author+" "+vector+" "+resultVector);

@@ -37,31 +37,38 @@ public class CreatingTheDataSet extends BaseRichBolt {
         String line = input.getString(0);
         //System.out.println(line);
 
-        String temp=line.replace(":source: EMIT_ALL_METRICS_AND_FEATURES_INTO_LIST_AND_VECTOR:53, stream: default, id: {},",":");
+        String temp=line.replace(":source: EMIT_ALL_METRICS_AND_FEATURES_INTO_LIST_AND_VECTOR:581, stream: default, id: {},",":");
         String[]temps=temp.split(":");
 
         String tupleStringValues=temps[temps.length-1];
-        String temp1=tupleStringValues.substring(1,tupleStringValues.length()-1);
+        String temp1=tupleStringValues.substring(4,tupleStringValues.length());
         String temp2=temp1.substring(1);
 
         String temp3=temp2.replace(", [", " [");
+    //    System.out.println(temp3);
         String[]temp4=temp3.split("\\[");
-      //  System.out.println(temp4[1]);
+//        System.out.println(temp4[1]);
 
         String author=StringUtils.substringBefore(temp3,"[");
-        String values=StringUtils.substringBetween(temp3,"[","]");
+        String values=StringUtils.substringBetween(temp3,"[","]]");
         //System.out.println(author);
         //System.out.println(values);
 
-        String[]aValue=values.split(",");
+        String values1=values.replace("["," ");
+
+       // System.out.println(values1);
+
+        String[]aValue=values1.split(",");
         final ArrayList<Double>valuesAsDoubleList=new ArrayList<Double>();
-        for(int i=0;i<aValue.length;i++){
+        for(int i=1;i<aValue.length;i++){
 
             valuesAsDoubleList.add(Double.parseDouble(aValue[i]));
         }
+     //   System.out.println(valuesAsDoubleList);
         double[]valuesAsDoubleVector= Doubles.toArray(valuesAsDoubleList);
 
         if(!map.containsKey(author)) {
+
             map.put(author,valuesAsDoubleVector);
            System.out.println(author+" "+valuesAsDoubleVector);
             collector.emit(input, new Values(author, valuesAsDoubleVector));

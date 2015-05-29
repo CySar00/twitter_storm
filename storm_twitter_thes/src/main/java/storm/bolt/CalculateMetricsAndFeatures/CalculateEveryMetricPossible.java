@@ -83,9 +83,10 @@ public class CalculateEveryMetricPossible extends BaseRichBolt {
 
     @Override
     public void execute(Tuple input) {
-        String sourceComponent=input.getSourceComponent();
+        final String sourceComponent=input.getSourceComponent();
+        String sourceStreamId=input.getSourceStreamId();
 
-        if(sourceComponent.equals("CREATE_THE_FUCKING_AUTHORS")){
+        if(sourceComponent.equals("CREATE_THE_AUTHORS")){
             anAuthor=input.getString(0);
         }
 
@@ -103,7 +104,7 @@ public class CalculateEveryMetricPossible extends BaseRichBolt {
 
         HashSet<String>authors=new HashSet<String>();
 
-        if(anAuthor!=null && author!=null){
+        if(anAuthor!=null && author!=null && text!=null){
             if(author.equals(anAuthor) ) {
                 if (!authors.contains(author)) {
 
@@ -414,8 +415,9 @@ public class CalculateEveryMetricPossible extends BaseRichBolt {
                     NIGHT_COUNT += 1;
                 }
 
+//                    if(!authors.contains(author)){
                 if (!this.OT1.containsKey(author) && !this.OT2.containsKey(author) && !this.OT3.containsKey(author) && !this.OT4.containsKey(author) && !this.CT1.containsKey(author) && !this.CT2.containsKey(author) && !this.RT1.containsKey(author) && !this.RT2.containsKey(author) && !this.RT3.containsKey(author) && !this.M1.containsKey(author) && !this.M2.containsKey(author) && !this.M3.containsKey(author) && !this.M4.containsKey(author) && !this.G1.containsKey(author) && !this.G2.containsKey(author) && !this.G3.containsKey(author) && !this.G4.containsKey(author) && !this.FREQUENCY.containsKey(author) && !this.MORNING_COUNT.containsKey(author) && !this.NOON_COUNT.containsKey(author) && !this.AFTERNOON_COUNT.containsKey(author) && !this.NIGHT_COUNT.containsKey(author) && !this.userAndTexts.containsKey(author) && !this.userAndIDs.containsKey(author) && !this.userAndListOfDates.containsKey(author)) {
-                    System.out.println(author);
+                        System.out.println(author);
 
                         collector.emit(new Values(author, texts.size(), OT1, OT2, OT3, OT4, CT1, CT2, RT1, RT2, RT3, M1, M2, M3, M4, G1, G2, G3, G4, FREQUENCY, MORNING_COUNT, NOON_COUNT, AFTERNOON_COUNT, EVENING_COUNT, NIGHT_COUNT));
 

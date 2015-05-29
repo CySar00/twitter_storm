@@ -21,9 +21,9 @@ public class UsersTopology {
         TopologyBuilder topologyBuilder=new TopologyBuilder();
 
         topologyBuilder.setSpout("READ_MONGODB_DATA",new LinesSpout("mongoData.txt"));
-        topologyBuilder.setBolt("SPLIT_LINES_INTO_TUPLE_FIELD_VALUES",new SplitLinesIntoTupleValueFields()).shuffleGrouping("READ_MONGODB_DATA");
+        topologyBuilder.setBolt("SPLIT_LINES_INTO_TUPLE_FIELD_VALUES",new SplitLinesIntoTupleValueFields(),64).shuffleGrouping("READ_MONGODB_DATA");
 
-        topologyBuilder.setBolt("SELECT_THE_AUTHORS",new SelectTheAuthors()).shuffleGrouping("SPLIT_LINES_INTO_TUPLE_FIELD_VALUES");
+        topologyBuilder.setBolt("SELECT_THE_AUTHORS",new SelectTheAuthors()).globalGrouping("SPLIT_LINES_INTO_TUPLE_FIELD_VALUES");
         topologyBuilder.setBolt("WRITE_THE_SELECTED_AUTHORS_TO_TEXT_FILE",new FileWriterBolt("theUsers.txt")).shuffleGrouping("SELECT_THE_AUTHORS");
 
 

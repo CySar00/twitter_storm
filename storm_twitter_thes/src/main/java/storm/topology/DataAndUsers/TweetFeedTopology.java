@@ -36,7 +36,7 @@ public class TweetFeedTopology {
         TopologyBuilder builder=new TopologyBuilder();
 
         FilterQuery filterQuery=new FilterQuery();
-        filterQuery.track(new String[]{ "#SPALBUM5","#SPalbum5"});
+        filterQuery.track(new String[]{ "#SPALBUM5","#SPalbum5","#diplo_nomisma"});
         filterQuery.language(new String[]{"en"});
 
         TwitterSpout twitterSpout=new TwitterSpout(accessToken,accessTokenSecret,consumerKey,consumerSecret);
