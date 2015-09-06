@@ -78,7 +78,6 @@
       <root url="jar://$USER_HOME$/Downloads/perf4j-0.9.10.jar!/" />
       <root url="jar://$USER_HOME$/Downloads/apache-commons.jar!/" />
       <root url="jar://$USER_HOME$/Downloads/high-scale-lib-1.0.jar!/" />
-      <root url="jar://$USER_HOME$/Downloads/libthrift-0.7.0.jar!/" />
       <root url="jar://$USER_HOME$/Downloads/astyanax-1.56.48.jar!/" />
       <root url="jar://$USER_HOME$/Downloads/astyanax-1.56.21.jar!/" />
       <root url="file://$USER_HOME$/Downloads/mongo4idea" />

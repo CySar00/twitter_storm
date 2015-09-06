@@ -1,0 +1,34 @@
+package Storm.Topologies.Clustering.Gaussian.GaussianRank.GaussianRank_Centroid_1;
+
+import backtype.storm.Config;
+import backtype.storm.LocalCluster;
+import backtype.storm.StormSubmitter;
+import backtype.storm.topology.TopologyBuilder;
+import backtype.storm.utils.Utils;
+
+/**
+ * Created by christina on 7/19/15.
+ */
+public class GaussianRank_Centroid_1 {
+
+    public static void main(String[]args) throws Exception{
+
+        TopologyBuilder topologyBuilder=new TopologyBuilder();
+
+
+
+        Config config=new Config();
+        if(args!=null && args.length>0){
+            config.setNumWorkers(10);
+            config.setNumAckers(5);
+            config.setMaxSpoutPending(100);
+            StormSubmitter.submitTopology(args[0], config, topologyBuilder.createTopology());
+        }else{
+            LocalCluster localCluster=new LocalCluster();
+            localCluster.submitTopology("Test",config,topologyBuilder.createTopology());
+            Utils.sleep(1 * 60 * 60 * 1000);
+            localCluster.killTopology("Test");
+            localCluster.shutdown();
+        }
+    }
+}
